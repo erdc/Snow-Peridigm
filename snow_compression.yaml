@@ -1,0 +1,112 @@
+Peridigm:
+
+  Discretization:
+      Type: "Exodus"
+      Input Mesh File: "Material_Points.g"
+
+  Materials:
+      GrainBC Material:
+          Material Model: "Elastic"
+          Density: 917.0
+          Bulk Modulus: 8.333e8
+          Shear Modulus: 3.846e8
+
+  Damage Models:
+      GrainBC Damage Model:
+          Damage Model: "Critical Stretch"
+          Critical Stretch: 8.283e-03
+
+  Blocks:
+      GrainBC Block:
+          Block Names: "block_1 block_2 block_3"
+          Material: "GrainBC Material"
+          Damage Model: "GrainBC Damage Model"
+          Horizon: 1.200e-04
+
+  Solver:
+      Initial Time: 0.0
+      Final Time: 0.15
+      Verlet:
+          Safety Factor: 0.5
+
+  Restart:
+   	  Restart: true
+
+  Contact:
+      Search Radius: 3.600e-05
+      Search Frequency: 25
+      Models:
+          My Contact Model:
+              Contact Model: "Short Range Force"
+              Contact Radius: 3.600e-05
+              Spring Constant: 3.142e+04
+              Friction Coefficient: 0.05
+      Interactions:
+          General Contact:
+              Contact Model: "My Contact Model"
+
+  Boundary Conditions:
+      Prescribed Displacement Fix Top Rigid Body Motion In X:
+          Type: "Prescribed Displacement"
+          Node Set: "nodelist_2"
+          Coordinate: "x"
+          Value: "0.0"
+      Prescribed Displacement Fix Top Rigid Body Motion In Y:
+          Type: "Prescribed Displacement"
+          Node Set: "nodelist_2"
+          Coordinate: "y"
+          Value: "0.0"
+      Prescribed Displacement Top:
+          Type: "Prescribed Displacement"
+          Node Set: "nodelist_2"
+          Coordinate: "z"
+          Value: "-6.000e-04*t"
+      Prescribed Displacement Fix Bottom Rigid Body Motion In X:
+          Type: "Prescribed Displacement"
+          Node Set: "nodelist_3"
+          Coordinate: "x"
+          Value: "0.0"
+      Prescribed Displacement Fix Bottom Rigid Body Motion In Y:
+          Type: "Prescribed Displacement"
+          Node Set: "nodelist_3"
+          Coordinate: "y"
+          Value: "0.0"
+      Prescribed Displacement Fix Bottom Rigid Body Motion In Z:
+          Type: "Prescribed Displacement"
+          Node Set: "nodelist_3"
+          Coordinate: "z"
+          Value: "0.0"
+      Gravity in Z Grains:
+          Type: "Body Force"
+          Node Set: "nodelist_1"
+          Coordinate: "z"
+          Value: "-8995.77"
+
+  Compute Class Parameters:
+      Top Reaction Force:
+          Compute Class: "Block_Data"
+          Calculation Type: "Sum"
+          Block: "block_2"
+          Variable: "Force"
+          Output Label: "Top_Reaction_Force"
+      Bottom Reaction Force:
+          Compute Class: "Block_Data"
+          Calculation Type: "Sum"
+          Block: "block_3"
+          Variable: "Force"
+          Output Label: "Bottom_Reaction_Force"
+
+  Output:
+      Output File Type: "ExodusII"
+      Output Filename: "results/snow_compression_SR_0_1_reg2"
+      Output Frequency: 100000
+      Output Variables:
+          Displacement: true
+          Velocity: true
+          Acceleration: true
+          Force_Density: true
+          Force: true
+          Contact_Force: true
+          Damage: true
+          Top_Reaction_Force: true
+          Bottom_Reaction_Force: true
