@@ -98,7 +98,7 @@ Peridigm:
 
   Output:
       Output File Type: "ExodusII"
-      Output Filename: "results/snow_compression_SR_0_1_reg2"
+      Output Filename: "results/snow_compression"
       Output Frequency: 100000
       Output Variables:
           Displacement: true
