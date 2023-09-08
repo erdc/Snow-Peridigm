@@ -14,7 +14,7 @@ Peridigm:
   Damage Models:
       GrainBC Damage Model:
           Damage Model: "Critical Stretch"
-          Critical Stretch: 8.283e-03
+          Critical Stretch: 8.283e-04
 
   Blocks:
       GrainBC Block:
