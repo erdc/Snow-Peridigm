@@ -21,7 +21,7 @@ Peridigm:
             Block Names: "block_1 block_2 block_3 block_4"
             Material: "GrainBC Material"
             Damage Model: "GrainBC Damage Model"
-            Horizon: 1.200e-04
+            Horizon: 1.240e-04
 
     Solver:
         Initial Time: 0.0
